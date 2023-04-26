@@ -3,17 +3,18 @@ import { Inter, Poiret_One } from "next/font/google";
 import Products from "./components/Products";
 import Head from "next/head";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: "--inter" });
 
 const customFont = Poiret_One({
   weight: "400",
-  subsets: ["latin-ext"],
+  subsets: ["latin"],
+  variable: "--customfont",
 });
 
 export default function Home() {
   return (
     <>
-      <main className={customFont.className}>
+      <main className={`${customFont.variable} ${inter.variable}`}>
         <Products />
       </main>
     </>

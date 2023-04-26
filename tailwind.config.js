@@ -15,6 +15,10 @@ module.exports = {
       },
     },
     extend: {
+      fontFamily: {
+        customFont: ["var(--customfont)"],
+        inter: ["var(--inter)"],
+      },
       colors: {
         border: "var(--border)",
         input: "var(--input)",
