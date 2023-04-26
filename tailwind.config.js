@@ -18,6 +18,7 @@ module.exports = {
       fontFamily: {
         customFont: ["var(--customfont)"],
         inter: ["var(--inter)"],
+        // montessoret: ["var(--bodycopy)"],
       },
       colors: {
         border: "var(--border)",

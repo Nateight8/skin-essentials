@@ -10,7 +10,9 @@ function Products({}: Props) {
   return (
     <section className="my-10  w-full px-4 ">
       <div className="py-6">
-        <h1 className="text-7xl pb-6 font-customFont">SKIN ESSENTIALS.</h1>
+        <h1 className=" text-5xl md:text-7xl pb-6 font-customFont">
+          SKIN ESSENTIALS.
+        </h1>
       </div>
       <div className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-2 sm:gap-[1.5em]">
         {[1, 2, 3, 4].map((item) => {
@@ -31,7 +33,7 @@ function Products({}: Props) {
                 <h4 className="capitalize text-center text-base pb-4">
                   Cucumber glow oil
                 </h4>
-                <Button variant="outline" className="w-full">
+                <Button variant="outline" className="w-full ">
                   Add to Bag - N25000
                 </Button>
               </div>
@@ -40,7 +42,7 @@ function Products({}: Props) {
         })}
       </div>
       <div className="py-10">
-        <Button className="w-full ">see more products</Button>
+        <Button className="w-full  ">see more products</Button>
       </div>
     </section>
   );
