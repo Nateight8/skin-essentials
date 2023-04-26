@@ -1,4 +1,5 @@
 "use client";
+import H4 from "@/components/ui/H4";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
@@ -30,9 +31,7 @@ function Products({}: Props) {
               </div>
 
               <div className="py-3">
-                <h4 className="capitalize text-center text-base pb-4">
-                  Cucumber glow oil
-                </h4>
+                <H4>Cucumber glow oil</H4>
                 <Button variant="outline" className="w-full ">
                   Add to Bag - N25000
                 </Button>
