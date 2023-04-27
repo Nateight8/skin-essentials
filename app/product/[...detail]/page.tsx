@@ -13,25 +13,24 @@ const Details = () => {
       {/* grid-cols-2 */}
       <div className="">
         <div className="grid md:grid-cols-2 ">
-          <div className="flex items-center justify-center w-full  bg-stone-200/10">
-            <div className=" w-full sm:w-96">
-              <AspectRatio ratio={1 / 1}>
-                <Image
-                  src="/images/3.png"
-                  alt=""
-                  className="object-cover object-bottom "
-                  fill
-                />
-              </AspectRatio>
+          <div className="flex items-center justify-center w-full   bg-stone-200/10">
+            <div className=" w-full h-[75vh] md:h-[50vh] sm:w-96 relative">
+              <Image
+                src="/images/3.png"
+                alt=""
+                className="object-cover object-bottom "
+                fill
+              />
             </div>
           </div>
           {/* right side start */}
           <div className="px-4 sm:px-6 py-6">
             <div className="">
-              <H2 className="font-inter">Cucumber Glow Oil</H2>
-              <H4 className="">N24,000</H4>
+              <H4 className="bg-2 p-0">N24,000</H4>
+              <H2 className="font-inter pb-2">Cucumber Glow Oil</H2>
             </div>
             <div className="h-px bg-stone-500/20 w-full my-4" />
+            <P className="text-lg uppercase">Details</P>
             <ScrollArea className=" h-[24ch] w-full max-w-xl mb-4">
               <div className="">
                 <P>
@@ -63,7 +62,7 @@ const Details = () => {
 
             <div className="h-[0.5px] bg-stone-500/20 w-full my-4" />
             <div className="w-full">
-              <Button className="w-full ">Add to bag</Button>
+              <Button className="w-full ">Add to bag - N25,000</Button>
             </div>
           </div>
         </div>
@@ -73,3 +72,14 @@ const Details = () => {
 };
 
 export default Details;
+
+{
+  /* <AspectRatio ratio={1 / 1}>
+                <Image
+                  src="/images/3.png"
+                  alt=""
+                  className="object-cover object-bottom "
+                  fill
+                />
+              </AspectRatio> */
+}

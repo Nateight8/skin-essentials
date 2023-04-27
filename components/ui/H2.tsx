@@ -3,7 +3,7 @@ import { VariantProps, cva } from "class-variance-authority";
 import { HTMLAttributes, forwardRef } from "react";
 
 const h2Variants = cva(
-  "capitalize font-inter font-normal text-slate-800 py-4",
+  "capitalize font-inter font-normal text-slate-800 pb-4",
   {
     variants: {
       size: {
