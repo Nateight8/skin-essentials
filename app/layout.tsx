@@ -1,5 +1,7 @@
+import Footer from "@/components/footer/Footer";
 import "./globals.css";
 import { Inter, Poiret_One } from "next/font/google";
+import Navbar from "@/components/navbar/Navbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +18,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
+        <Navbar />
         <main>{children}</main>
+        <Footer />
       </body>
     </html>
   );

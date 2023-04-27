@@ -2,10 +2,10 @@ import { cn } from "@/lib/utils";
 import { VariantProps, cva } from "class-variance-authority";
 import { HTMLAttributes, forwardRef } from "react";
 
-const h4Variants = cva("capitalize font-inter font-normal text-center  pb-4", {
+const pVariants = cva("pb-4 font-inter", {
   variants: {
     size: {
-      default: "text-base",
+      default: "text-sm",
     },
   },
   defaultVariants: {
@@ -13,20 +13,20 @@ const h4Variants = cva("capitalize font-inter font-normal text-center  pb-4", {
   },
 });
 
-interface H2Heading
+interface PHeading
   extends HTMLAttributes<HTMLHeadingElement>,
-    VariantProps<typeof h4Variants> {}
+    VariantProps<typeof pVariants> {}
 
-const H4 = forwardRef<HTMLHeadingElement, H2Heading>(
+const P = forwardRef<HTMLHeadingElement, PHeading>(
   ({ children, className, size, ...props }, ref) => {
     return (
-      <h2 ref={ref} {...props} className={cn(h4Variants({ size, className }))}>
+      <p ref={ref} {...props} className={cn(pVariants({ size, className }))}>
         {children}
-      </h2>
+      </p>
     );
   }
 );
 
-H4.displayName = "H4";
+P.displayName = "H4";
 
-export { H4, h4Variants };
+export { P, pVariants };

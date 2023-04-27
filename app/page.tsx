@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { Inter, Montserrat, Poiret_One } from "next/font/google";
+import { Montserrat, Poiret_One } from "next/font/google";
 import Products from "./components/Products";
 import Head from "next/head";
 
