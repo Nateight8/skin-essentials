@@ -1,5 +1,6 @@
 "use client";
 import { H2 } from "@/components/ui/H2";
+import { H4 } from "@/components/ui/H4";
 import { P } from "@/components/ui/P";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Button } from "@/components/ui/button";
@@ -27,10 +28,8 @@ const Details = () => {
           {/* right side start */}
           <div className="px-4 sm:px-6 py-6">
             <div className="">
-              <H2>Cucumber Glow Oil</H2>
-              <h4 className="capitalize font-inter font-semibold text-base pb-4">
-                N24,000
-              </h4>
+              <H2 className="font-inter">Cucumber Glow Oil</H2>
+              <H4 className="">N24,000</H4>
             </div>
             <div className="h-px bg-stone-500/20 w-full my-4" />
             <ScrollArea className=" h-[24ch] w-full max-w-xl mb-4">

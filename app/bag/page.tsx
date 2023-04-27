@@ -13,11 +13,13 @@ const Bag = () => {
       <main className="min-h-screen">
         <div className=" ">
           <div className="grid md:grid-cols-2 w-full gap-x-px  bg-stone-500/20 my-8 ">
-            <ScrollArea className="bg-background h-[70vh] py-2 ">
-              {[1, 2, 3, 4, 5, 6, 6, 7].map((item) => (
-                <Left key={item} />
-              ))}
-            </ScrollArea>
+            <div className="h-full bg-background">
+              <ScrollArea className="bg-background h-[70vh] py-2 ">
+                {[1, 2, 3, 4, 5, 6, 6, 7].map((item) => (
+                  <Left key={item} />
+                ))}
+              </ScrollArea>
+            </div>
             <div className=" py-6 bg-background">
               <Right />
             </div>

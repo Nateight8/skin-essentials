@@ -1,24 +1,25 @@
 import React from "react";
 import List from "./List";
 import { Button } from "@/components/ui/button";
+import { P } from "@/components/ui/P";
 type Props = {};
 
 function Right({}: Props) {
   return (
     <>
       <List>
-        <p>Subtotal</p>
-        <p>N25,000</p>
+        <P className="font-medium">Subtotal</P>
+        <P className="font-medium">N25,000</P>
       </List>
 
       <List>
-        <p>Estimated Delivery</p>
-        <p>N25,000</p>
+        <P className="font-medium">Estimated Delivery</P>
+        <P className="font-medium">N25,000</P>
       </List>
 
       <List>
-        <p>Total</p>
-        <p>N25,000</p>
+        <P className="font-medium">Total</P>
+        <P className="font-medium">N25,000</P>
       </List>
 
       <List>

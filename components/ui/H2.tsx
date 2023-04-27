@@ -2,16 +2,19 @@ import { cn } from "@/lib/utils";
 import { VariantProps, cva } from "class-variance-authority";
 import { HTMLAttributes, forwardRef } from "react";
 
-const h2Variants = cva("capitalize font-customFont font-normal  py-4", {
-  variants: {
-    size: {
-      default: "text-3xl",
+const h2Variants = cva(
+  "capitalize font-inter font-normal text-slate-800 py-4",
+  {
+    variants: {
+      size: {
+        default: "text-3xl",
+      },
     },
-  },
-  defaultVariants: {
-    size: "default",
-  },
-});
+    defaultVariants: {
+      size: "default",
+    },
+  }
+);
 
 interface H2Heading
   extends HTMLAttributes<HTMLHeadingElement>,
