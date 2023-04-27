@@ -1,9 +1,15 @@
 import Footer from "@/components/footer/Footer";
 import "./globals.css";
-import { Inter, Poiret_One } from "next/font/google";
+import { Inter, Montserrat, Poiret_One } from "next/font/google";
 import Navbar from "@/components/navbar/Navbar";
 
-const inter = Inter({ subsets: ["latin"] });
+const customFont = Poiret_One({
+  weight: "400",
+  subsets: ["latin"],
+  variable: "--customfont",
+});
+
+const montese = Montserrat({ subsets: ["latin"], variable: "--inter" });
 
 export const metadata = {
   title: "Create Next App",
@@ -17,7 +23,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className={`${customFont.variable} ${montese.variable}`}>
         <Navbar />
         <main>{children}</main>
         <Footer />

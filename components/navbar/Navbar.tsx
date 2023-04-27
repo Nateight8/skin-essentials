@@ -31,11 +31,14 @@ function Navbar({}: Props) {
               </Link>
             </li>
           </ul>
+
+          <Hamburger
+            color="#32323D"
+            toggled={isOpen}
+            toggle={setOpen}
+            rounded
+          />
         </div>
-        {/* Burger nav */}
-        {/* <div className="">
-          <div className=" w-[80%] bg-red-500 absolute z-40 top-0 left-0 bottom-0"></div>
-        </div> */}
       </nav>
     </>
   );
