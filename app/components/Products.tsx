@@ -36,7 +36,7 @@ function Products({}: Props) {
               </Link>
 
               <div className="py-3">
-                <H4 className="text-center">Cucumber glow oil</H4>
+                <H4 className="text-center font-normal">Cucumber glow oil</H4>
                 <Button variant="outline" className="w-full ">
                   Add to Bag - N25000
                 </Button>
