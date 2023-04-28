@@ -36,10 +36,20 @@ const MobileNav = ({ toggleNav, isOpen }: Props) => {
         </div>
       </div>
       <div
-        className={` bg-gray-600/75 fixed overflow-y-hidden top-0 left-0 h-screen w-screen z-10 duration-500 delay-100 ease-in-out ${
+        className={`flex items-start justify-end bg-slate-900 opacity-75 fixed overflow-y-hidden top-0 left-0 h-screen w-screen z-10 duration-500 delay-100 ease-in-out ${
           isOpen ? "translate-x-0 " : "-translate-x-full "
         }`}
-      />
+      >
+        <div className="">
+          <Hamburger
+            color={`${isOpen ? "rgb(245 245 244)" : "#32323D"} `}
+            toggled={isOpen}
+            toggle={toggleNav}
+            rounded
+            size={24}
+          />
+        </div>
+      </div>
     </div>
   );
 };
