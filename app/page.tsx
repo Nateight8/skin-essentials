@@ -1,7 +1,4 @@
-import Image from "next/image";
 import Products from "./components/Products";
-import Head from "next/head";
-import MobileNav from "@/components/navbar/Mobilenav";
 import { getProducts } from "@/lib/swell/products";
 
 // interface Props {

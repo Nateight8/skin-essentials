@@ -10,9 +10,9 @@ import { useAppDispatch } from "@/lib/redux/store";
 
 import Image from "next/image";
 
-const Details = ({ product }) => {
+const Details = ({}) => {
   const dispatch = useAppDispatch();
-  console.log(product);
+  // console.log(product);
 
   return (
     <main className="min-h-screen flex items-center justify-center">

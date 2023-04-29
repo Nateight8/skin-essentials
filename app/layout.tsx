@@ -1,7 +1,7 @@
 "use client";
 import Footer from "@/components/footer/Footer";
 import "./globals.css";
-import { Inter, Montserrat, Poiret_One } from "next/font/google";
+import { Montserrat, Poiret_One } from "next/font/google";
 import Navbar from "@/components/navbar/Navbar";
 import { Provider } from "react-redux";
 import { store } from "@/lib/redux/store";
