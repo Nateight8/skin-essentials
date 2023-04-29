@@ -44,7 +44,7 @@ function Products({ products }: any) {
           return (
             <div key={id} className="w-full ">
               <Link
-                href={`/product/slug/${slug}`}
+                href={`/product/${slug}`}
                 className=" max-w-72 w-full  hover:cursor-pointer"
               >
                 <AspectRatio ratio={2 / 2.4} className="overflow-hidden ">
