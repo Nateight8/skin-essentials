@@ -9,20 +9,41 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-type Props = {};
+// type Props = {
+//   products: [];
+// };
 
-function Products({}: Props) {
+// interface Product {
+//   id: string;
+//   description: string;
+//   price: string;
+//   slug: string;
+// }
+
+interface Props {
+  products: [
+    {
+      id: string;
+      description: string;
+      price: string;
+      slug: string;
+    }
+  ];
+}
+
+function Products({ products }: Props) {
   const dispatch = useAppDispatch();
 
-  // const handleBag = (payload) => {
-  //   dispatch(addProduct({ payload }));
-  // };
-  const products = [
-    { id: "1", detail: "number one" },
-    { id: "2", detail: "number two" },
-    { id: "3", detail: "number three" },
-    { id: "4", detail: "number four" },
-  ];
+  // console.log(products);
+
+  // const { id, description, price, slug } = products;
+
+  // const products = [
+  //   { id: "1", detail: "number one" },
+  //   { id: "2", detail: "number two" },
+  //   { id: "3", detail: "number three" },
+  //   { id: "4", detail: "number four" },
+  // ];
 
   return (
     <section className="my-10  w-full px-4 ">
@@ -32,16 +53,19 @@ function Products({}: Props) {
         </h1>
       </div>
       <div className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-2 sm:gap-[1.5em]">
-        {products.map((item) => {
+        {products.map((product) => {
+          const { id, description, price, slug, images } = product;
+          const url = images[0].file.url;
+
           return (
-            <div key={item.id} className="w-full ">
+            <div key={id} className="w-full ">
               <Link
-                href={`/product/detail/${item.id}`}
+                href={`/product/slug/${slug}`}
                 className=" max-w-72 w-full  hover:cursor-pointer"
               >
                 <AspectRatio ratio={2 / 2.4} className="overflow-hidden ">
                   <Image
-                    src="/images/5.png"
+                    src={url}
                     alt=""
                     className="object-cover select-none hover:scale-110 transition-all duration-1000 ease-in-out"
                     fill
@@ -51,14 +75,8 @@ function Products({}: Props) {
 
               <div className="py-3">
                 <H4 className="text-center font-normal">Cucumber glow oil</H4>
-                <Button
-                  onClick={() => {
-                    dispatch(addProduct(item));
-                  }}
-                  variant="outline"
-                  className="w-full "
-                >
-                  Add to Bag - N25000
+                <Button variant="outline" className="w-full ">
+                  Add to Bag - {price}
                 </Button>
               </div>
             </div>

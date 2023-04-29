@@ -7,10 +7,13 @@ import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { addProduct } from "@/lib/redux/features/cartSlice";
 import { useAppDispatch } from "@/lib/redux/store";
+import Swell from "@/swell/init/client";
 import Image from "next/image";
 
-const Details = () => {
+const Details = ({ product }) => {
   const dispatch = useAppDispatch();
+  console.log(product);
+
   return (
     <main className="min-h-screen flex items-center justify-center">
       {/* grid-cols-2 */}
@@ -83,13 +86,24 @@ const Details = () => {
 
 export default Details;
 
-{
-  /* <AspectRatio ratio={1 / 1}>
-                <Image
-                  src="/images/3.png"
-                  alt=""
-                  className="object-cover object-bottom "
-                  fill
-                />
-              </AspectRatio> */
-}
+// export async function getStaticProps({ params }) {
+//   const swellProduct = await Swell.products.get(params.slug);
+//   return {
+//     props: {
+//       product: swellProduct,
+//     },
+//   };
+// }
+
+// export async function getStaticPaths() {
+//   const swellProducts = await Swell.products.list();
+//   let fullPaths = [];
+//   for (let product of swellProducts.results) {
+//     fullPaths.push({ params: { slug: product.id } });
+//   }
+
+//   return {
+//     paths: fullPaths,
+//     fallback: "blocking",
+//   };
+// }

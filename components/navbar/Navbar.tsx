@@ -32,7 +32,7 @@ function Navbar({}: Props) {
   return (
     <>
       <nav className="bg-stone-400  py-2 px-2  z-50 sticky top-0 left-0 right-0 ">
-        <div className="flex w-full justify-between items-center">
+        <div className="flex w-full justify-between items-center relative">
           {/* <ul className="">
             <li className="uppercase px-2">
               <Link
@@ -65,7 +65,7 @@ function Navbar({}: Props) {
             ) : (
               <Button
                 variant="ghost"
-                className={`hover:bg-transparent relative  p-0  duration-1000 ease-in-out `}
+                className={`hover:bg-transparent relative duration-1000 ease-in-out `}
               >
                 <ShoppingBag size={24} color="#32323D" />
                 <span className="text-xl text-primary   ml-1 font-inter font-semibold">
@@ -75,8 +75,8 @@ function Navbar({}: Props) {
             )}
           </div>
         </div>
+        <MobileNav toggleNav={toggleNav} isOpen={isOpen} />
       </nav>
-      <MobileNav toggleNav={toggleNav} isOpen={isOpen} />
     </>
   );
 }
