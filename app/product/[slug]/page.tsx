@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { addProduct } from "@/lib/redux/features/cartSlice";
 import { useAppDispatch } from "@/lib/redux/store";
-import Swell from "@/swell/init/client";
+
 import Image from "next/image";
 
 const Details = ({ product }) => {

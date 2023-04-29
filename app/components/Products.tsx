@@ -9,41 +9,24 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-// type Props = {
-//   products: [];
-// };
-
-// interface Product {
-//   id: string;
-//   description: string;
-//   price: string;
-//   slug: string;
+// interface Props {
+//   products: Prod[];
 // }
 
-interface Props {
+type Props = {
   products: [
     {
       id: string;
       description: string;
       price: string;
       slug: string;
+      images: string;
     }
   ];
-}
+};
 
-function Products({ products }: Props) {
+function Products({ products }: any) {
   const dispatch = useAppDispatch();
-
-  // console.log(products);
-
-  // const { id, description, price, slug } = products;
-
-  // const products = [
-  //   { id: "1", detail: "number one" },
-  //   { id: "2", detail: "number two" },
-  //   { id: "3", detail: "number three" },
-  //   { id: "4", detail: "number four" },
-  // ];
 
   return (
     <section className="my-10  w-full px-4 ">
@@ -53,8 +36,9 @@ function Products({ products }: Props) {
         </h1>
       </div>
       <div className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-2 sm:gap-[1.5em]">
-        {products.map((product) => {
+        {products.map((product: any) => {
           const { id, description, price, slug, images } = product;
+
           const url = images[0].file.url;
 
           return (

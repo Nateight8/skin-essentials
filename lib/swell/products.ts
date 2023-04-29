@@ -2,19 +2,19 @@ import swell from "./client";
 
 export const getProducts = async ({
   page = 1,
-  sort = "",
+  //   sort = "",
   filters = {},
   limit = 25,
 }) => {
   return await swell.products.list({
     page,
     limit,
-    sort,
+    // sort,
     $filters: filters,
     expand: ["variants", "categories"],
   });
 };
 
-export const getProductBySlugOrId = async (slugOrId) => {
+export const getProductBySlugOrId = async (slugOrId: string) => {
   return await swell.products.get(slugOrId);
 };
