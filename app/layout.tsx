@@ -1,3 +1,4 @@
+"use client";
 import Footer from "@/components/footer/Footer";
 import "./globals.css";
 import { Inter, Montserrat, Poiret_One } from "next/font/google";
@@ -26,13 +27,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${customFont.variable} ${montese.variable}`}>
-        {/* <Provider store={store}> */}
-        <>
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
-        </>
-        {/* </Provider> */}
+        <Provider store={store}>
+          <>
+            <Navbar />
+            <main>{children}</main>
+            <Footer />
+          </>
+        </Provider>
       </body>
     </html>
   );

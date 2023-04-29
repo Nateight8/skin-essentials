@@ -6,6 +6,7 @@ import { Twirl as Hamburger } from "hamburger-react";
 import { Button } from "../ui/button";
 import MobileNav from "./Mobilenav";
 import { usePathname } from "next/navigation";
+import { useAppSelector } from "@/lib/redux/store";
 
 type Props = {};
 
@@ -21,9 +22,16 @@ function Navbar({}: Props) {
     setOpen(false);
   }, [pathname]);
 
+  // redux
+  const { cart } = useAppSelector((store) => {
+    return store.cartSlice;
+  });
+
+  console.log(cart);
+
   return (
     <>
-      <nav className="bg-stone-400  py-2 px-2  z-50">
+      <nav className="bg-stone-400  py-2 px-2  z-50 sticky top-0 left-0 right-0 ">
         <div className="flex w-full justify-between items-center">
           {/* <ul className="">
             <li className="uppercase px-2">
@@ -42,7 +50,7 @@ function Navbar({}: Props) {
             rounded
             size={24}
           />
-          <div className="flex items-center z-50">
+          <div className="flex items-center z-50 px-2">
             {isOpen ? (
               <div className="">
                 <Hamburger
@@ -57,11 +65,11 @@ function Navbar({}: Props) {
             ) : (
               <Button
                 variant="ghost"
-                className={`hover:bg-transparent  p-0  duration-1000 ease-in-out `}
+                className={`hover:bg-transparent relative  p-0  duration-1000 ease-in-out `}
               >
                 <ShoppingBag size={24} color="#32323D" />
-                <span className="text-xl text-primary font-inter font-bold">
-                  1
+                <span className="text-xl text-primary   ml-1 font-inter font-semibold">
+                  {cart.length}
                 </span>
               </Button>
             )}
