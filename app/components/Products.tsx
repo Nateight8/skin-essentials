@@ -37,7 +37,7 @@ function Products({ products }: any) {
       </div>
       <div className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-2 sm:gap-[1.5em]">
         {products.map((product: any) => {
-          const { id, description, price, slug, images } = product;
+          const { id, description, price, slug, images, name } = product;
 
           const url = images[0].file.url;
 
@@ -51,14 +51,14 @@ function Products({ products }: any) {
                   <Image
                     src={url}
                     alt=""
-                    className="object-cover select-none hover:scale-110 transition-all duration-1000 ease-in-out"
+                    className="object-cover object-center select-none hover:scale-110 transition-all duration-1000 ease-in-out"
                     fill
                   />
                 </AspectRatio>
               </Link>
 
               <div className="py-3">
-                <H4 className="text-center font-normal">Cucumber glow oil</H4>
+                <H4 className="text-center font-normal">{name}</H4>
                 <Button variant="outline" className="w-full ">
                   Add to Bag - {price}
                 </Button>
