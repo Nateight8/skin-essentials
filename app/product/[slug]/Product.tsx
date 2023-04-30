@@ -18,8 +18,6 @@ type Props = {
 };
 
 function Product({ product }: any) {
-  console.log(product);
-
   const { description, name, images, price } = product;
   const url = images[0].file.url;
 
@@ -44,9 +42,9 @@ function Product({ product }: any) {
           </div>
           <div className="h-px bg-stone-500/20 w-full my-4" />
           <P className="text-lg uppercase">Details</P>
-          <ScrollArea className=" h-[24ch] w-full max-w-xl mb-4 ">
+          <ScrollArea className=" h-[24ch] w-full max-w-xl mb-4 bg-inherit ">
             <div
-              style={{ color: "REd" }}
+              className="pb-4 font-inter text-slate-700 bg-inherit"
               dangerouslySetInnerHTML={{ __html: description }}
             />
           </ScrollArea>
