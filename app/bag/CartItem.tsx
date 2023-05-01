@@ -4,16 +4,38 @@ import { P } from "@/components/ui/P";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import React from "react";
+import React, { useTransition } from "react";
+import { useSWRConfig } from "swr";
+import { useRouter } from "next/navigation";
 import { Product } from "swell-js";
-
+import { removeFromCart } from "@/lib/swell/cart";
+import { CartItemSnake } from "swell-js/types/cart/snake";
 type Props = {
   product: Product | undefined;
   quantity: number | undefined;
+  item: CartItemSnake;
 };
 
-function CartItem({ product, quantity }: Props) {
+function CartItem({ product, quantity, item }: Props) {
   const src = (product?.images && product?.images[0]?.file?.url) ?? "";
+  const { mutate } = useSWRConfig();
+  const [isPending, startTransition] = useTransition();
+  const router = useRouter();
+
+  const removeItem = async () => {
+    if (item.id) {
+      await removeFromCart(item.id);
+    }
+
+    mutate("cart");
+
+    startTransition(() => {
+      router.refresh();
+    });
+  };
+
+  console.log(product);
+
   return (
     <div className="w-full my-2  md:my-4 gap-2 md:gap-4 grid grid-cols-3 px-4 ">
       <div className="w-full flex items-center">
@@ -38,7 +60,13 @@ function CartItem({ product, quantity }: Props) {
             <button className="">-</button>
           </div>
           <div className="">
-            <Button variant="ghost" size="sm" className="capitalize text-xs">
+            <Button
+              type="submit"
+              onClick={removeItem}
+              variant="ghost"
+              size="sm"
+              className="capitalize text-xs"
+            >
               Remove
             </Button>
           </div>

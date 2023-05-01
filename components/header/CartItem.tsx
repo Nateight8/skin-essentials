@@ -1,9 +1,13 @@
-import React from "react";
+import React, { useTransition } from "react";
 import { AspectRatio } from "../ui/aspect-ratio";
 import Image from "next/image";
 import { P } from "../ui/P";
 import { Button } from "../ui/button";
+import { useSWRConfig } from "swr";
+import { useRouter } from "next/navigation";
 import { Product } from "swell-js";
+import { removeFromCart } from "@/lib/swell/cart";
+import { CartItemSnake } from "swell-js/types/cart/snake";
 
 type Image = {
   file: {
@@ -20,10 +24,27 @@ type productProps = {
 type Props = {
   product: Product | undefined;
   quantity: number | undefined;
+  items: CartItemSnake;
 };
 
-function CartItem({ product, quantity }: Props) {
+function CartItem({ product, quantity, items }: Props) {
   const src = (product?.images && product?.images[0]?.file?.url) ?? "";
+
+  const { mutate } = useSWRConfig();
+  const [isPending, startTransition] = useTransition();
+  const router = useRouter();
+
+  const removeItem = async () => {
+    if (items.id) {
+      await removeFromCart(items.id);
+    }
+
+    mutate("cart");
+
+    startTransition(() => {
+      router.refresh();
+    });
+  };
 
   return (
     <div className="w-[18rem] gap-2 grid grid-cols-3">
@@ -48,7 +69,12 @@ function CartItem({ product, quantity }: Props) {
             <button className="">-</button>
           </div>
           <div className="">
-            <Button variant="ghost" size="sm" className="capitalize text-xs">
+            <Button
+              onClick={removeItem}
+              variant="ghost"
+              size="sm"
+              className="capitalize text-xs"
+            >
               Remove
             </Button>
           </div>

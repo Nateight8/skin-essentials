@@ -34,7 +34,7 @@ function Header({}: Props) {
   const disable = path === "/bag" ? true : false;
 
   return (
-    <div className="flex item-center w-full justify-between">
+    <nav className="flex item-center w-full justify-between sticky top-0 left-0 right-0 z-50">
       <div className=""></div>
       <div className=""></div>
       <Menubar>
@@ -56,20 +56,23 @@ function Header({}: Props) {
         </div>
         <MenubarMenu>
           <MenubarTrigger disabled={disable}>
-            Bag ({0 && cartItems?.length})
+            Bag ({cartItems?.length === 0 ? 0 : cartItems?.length})
           </MenubarTrigger>
 
           <MenubarContent>
             {cartItems ? (
-              <ScrollArea className="h-72 w-full ">
+              <ScrollArea className="h-fit w-full ">
                 {cartItems?.map((items) => {
                   const { product, quantity } = items;
-                  // console.table(items);
 
                   return (
                     <Fragment key={items.id}>
                       <MenubarItem>
-                        <CartItem product={product} quantity={quantity} />
+                        <CartItem
+                          product={product}
+                          quantity={quantity}
+                          items={items}
+                        />
                       </MenubarItem>
                       <MenubarSeparator />
                     </Fragment>
@@ -87,7 +90,7 @@ function Header({}: Props) {
           </MenubarContent>
         </MenubarMenu>
       </Menubar>
-    </div>
+    </nav>
   );
 }
 

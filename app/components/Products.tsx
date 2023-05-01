@@ -7,26 +7,34 @@ import { addProduct } from "@/lib/redux/features/cartSlice";
 import { useAppDispatch } from "@/lib/redux/store";
 import Image from "next/image";
 import Link from "next/link";
-import React from "react";
-
-// interface Props {
-//   products: Prod[];
-// }
+import React, { useTransition } from "react";
+import { Product } from "swell-js";
+import { ScrollArea } from "@/components/ui/scroll-area";
+import { useSWRConfig } from "swr";
+import { addToCart } from "@/lib/swell/cart";
+import { useRouter } from "next/navigation";
 
 type Props = {
-  products: [
-    {
-      id: string;
-      description: string;
-      price: string;
-      slug: string;
-      images: string;
-    }
-  ];
+  products: any;
 };
 
-function Products({ products }: any) {
-  const dispatch = useAppDispatch();
+function Products({ products }: Props) {
+  const { mutate } = useSWRConfig();
+  const [isPending, startTransition] = useTransition();
+  const router = useRouter();
+
+  const addItem = async (itemId: string | undefined) => {
+    await addToCart({
+      product_id: itemId,
+      quantity: 1,
+    });
+
+    mutate("cart");
+
+    startTransition(() => {
+      router.refresh();
+    });
+  };
 
   return (
     <section className="my-10  w-full px-4 ">
@@ -36,10 +44,11 @@ function Products({ products }: any) {
         </h1>
       </div>
       <div className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-2 sm:gap-[1.5em]">
-        {products.map((product: any) => {
-          const { id, description, price, slug, images, name } = product;
+        {products.map((product: Product) => {
+          const { id, price, slug, images, name } = product;
+          const url = (product?.images && product?.images[0]?.file?.url) ?? "";
 
-          const url = images[0].file.url;
+          // handling click
 
           return (
             <div key={id} className="w-full ">
@@ -59,7 +68,14 @@ function Products({ products }: any) {
 
               <div className="py-3">
                 <H4 className="text-center font-normal">{name}</H4>
-                <Button variant="outline" className="w-full ">
+                <Button
+                  type="submit"
+                  onClick={() => {
+                    addItem(id);
+                  }}
+                  variant="outline"
+                  className="w-full "
+                >
                   Add to Bag - {price}
                 </Button>
               </div>

@@ -24,9 +24,15 @@ const Bag = () => {
                 {cartItems?.map((item) => {
                   const { product, quantity } = item;
 
+                  // console.log(item);
+
                   return (
                     <div className="" key={item.id}>
-                      <CartItem product={product} quantity={quantity} />
+                      <CartItem
+                        product={product}
+                        quantity={quantity}
+                        item={item}
+                      />
                       <MenubarSeparator className="bg-stone-500/20" />
                     </div>
                   );

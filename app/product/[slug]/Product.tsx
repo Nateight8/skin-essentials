@@ -9,25 +9,21 @@ import { useSWRConfig } from "swr";
 import Image from "next/image";
 import { addToCart } from "@/lib/swell/cart";
 import { useRouter } from "next/navigation";
+import { Product } from "swell-js";
 
 type Props = {
-  product: {
-    description: string;
-    name: string;
-    images: [{ file: { url: string } }];
-    price: string;
-  };
+  product: Product;
 };
 
-function Product({ product }: any) {
-  const { description, name, images, price, id } = product;
-  const url = images[0].file.url;
+function Product({ product }: Props) {
+  // const { description, name, images, price, id } = product;
+  const url = (product?.images && product?.images[0]?.file?.url) ?? "";
   const { mutate } = useSWRConfig();
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
   const handleSubmit = async () => {
     await addToCart({
-      product_id: id,
+      product_id: product.id,
       quantity: 1,
     });
 
@@ -37,10 +33,6 @@ function Product({ product }: any) {
       router.refresh();
     });
   };
-
-  // export const addToCart = async (item: any) => {
-  //   return await swell.cart.addItem(item);
-  // };
 
   return (
     <div className="">
@@ -58,22 +50,24 @@ function Product({ product }: any) {
         {/* right side start */}
         <div className="px-4 sm:px-6 py-6">
           <div className="">
-            <H4 className="bg-2 p-0">N{price}</H4>
-            <H2 className="font-inter pb-2">{name}</H2>
+            <H4 className="bg-2 p-0">N{product.price}</H4>
+            <H2 className="font-inter pb-2">{product.name}</H2>
           </div>
           <div className="h-px bg-stone-500/20 w-full my-4" />
           <P className="text-lg uppercase">Details</P>
           <ScrollArea className=" h-[24ch] w-full max-w-xl mb-4 bg-inherit ">
             <div
               className="pb-4 font-inter text-slate-700 bg-inherit"
-              dangerouslySetInnerHTML={{ __html: description }}
+              dangerouslySetInnerHTML={{
+                __html: product.description?.toString() as string,
+              }}
             />
           </ScrollArea>
 
           <div className="h-[0.5px] bg-stone-500/20 w-full my-4" />
           <div className="w-full">
             <Button type="submit" onClick={handleSubmit} className="w-full ">
-              Add to bag - {price}
+              Add to bag - {product.price}
             </Button>
           </div>
         </div>
