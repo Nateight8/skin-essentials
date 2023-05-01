@@ -56,7 +56,7 @@ function Header({}: Props) {
         </div>
         <MenubarMenu>
           <MenubarTrigger disabled={disable}>
-            Bag ({cartItems?.length})
+            Bag ({0 && cartItems?.length})
           </MenubarTrigger>
 
           <MenubarContent>
