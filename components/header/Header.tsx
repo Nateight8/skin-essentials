@@ -16,6 +16,7 @@ import { Button, buttonVariants } from "../ui/button";
 import { useRouter, usePathname } from "next/navigation";
 import { P } from "../ui/P";
 import Link from "next/link";
+import {} from "@radix-ui/react-menubar";
 
 type Props = {};
 
@@ -29,12 +30,12 @@ function Header({}: Props) {
     router.push("/bag");
   };
 
-  // console.log(cart);
+  // useMenu
 
   const disable = path === "/bag" ? true : false;
 
   return (
-    <nav className="flex item-center w-full justify-between sticky top-0 left-0 right-0 z-50">
+    <nav className="flex item-center bg-stone-300 w-full justify-between sticky top-0 left-0 right-0 z-50">
       <div className=""></div>
       <div className=""></div>
       <Menubar>
@@ -71,7 +72,7 @@ function Header({}: Props) {
 
                   return (
                     <Fragment key={items.id}>
-                      <MenubarItem>
+                      <MenubarItem onSelect={(e) => e.preventDefault()}>
                         <CartItem
                           product={product}
                           quantity={quantity}
