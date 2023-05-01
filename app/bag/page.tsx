@@ -13,9 +13,6 @@ import SumTotals from "./SumTotals";
 const Bag = () => {
   const { data: cart, isLoading } = useSWR("cart", getCart);
   const cartItems = cart?.items;
-  // const cartItems = cart?.items;
-
-  // console.log(cartItems);
 
   return (
     <>
