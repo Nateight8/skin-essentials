@@ -7,7 +7,9 @@ import { Button } from "../ui/button";
 import MobileNav from "./Mobilenav";
 import { usePathname } from "next/navigation";
 import { useAppSelector } from "@/lib/redux/store";
-
+import { getCart } from "@/lib/swell/cart";
+import useSWR from "swr";
+import swell from "../../lib/swell/client";
 type Props = {};
 
 function Navbar({}: Props) {
@@ -22,12 +24,12 @@ function Navbar({}: Props) {
     setOpen(false);
   }, [pathname]);
 
-  // redux
-  const { cart } = useAppSelector((store) => {
-    return store.cartSlice;
-  });
+  const { data: cart, isLoading } = useSWR("cart", getCart);
 
-  console.log(cart);
+  // console.log(cart?.item_quantity);
+  // getCart();
+
+  // console.log(item_quantity);
 
   return (
     <>
@@ -69,7 +71,7 @@ function Navbar({}: Props) {
               >
                 <ShoppingBag size={24} color="#32323D" />
                 <span className="text-xl text-primary   ml-1 font-inter font-semibold">
-                  {cart.length}
+                  {cart?.item_quantity}
                 </span>
               </Button>
             )}

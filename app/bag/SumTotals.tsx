@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { P } from "@/components/ui/P";
 type Props = {};
 
-function Right({}: Props) {
+function SumTotals({}: Props) {
   return (
     <>
       <List>
@@ -39,4 +39,4 @@ function Right({}: Props) {
   );
 }
 
-export default Right;
+export default SumTotals;

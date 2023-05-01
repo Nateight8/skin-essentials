@@ -1,12 +1,14 @@
 "use client";
-import React, { useLayoutEffect, useRef } from "react";
+import React, { useLayoutEffect, useRef, useTransition } from "react";
 import { H2 } from "@/components/ui/H2";
 import { H4 } from "@/components/ui/H4";
 import { P } from "@/components/ui/P";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
-
+import { useSWRConfig } from "swr";
 import Image from "next/image";
+import { addToCart } from "@/lib/swell/cart";
+import { useRouter } from "next/navigation";
 
 type Props = {
   product: {
@@ -18,8 +20,27 @@ type Props = {
 };
 
 function Product({ product }: any) {
-  const { description, name, images, price } = product;
+  const { description, name, images, price, id } = product;
   const url = images[0].file.url;
+  const { mutate } = useSWRConfig();
+  const [isPending, startTransition] = useTransition();
+  const router = useRouter();
+  const handleSubmit = async () => {
+    await addToCart({
+      product_id: id,
+      quantity: 1,
+    });
+
+    mutate("cart");
+
+    startTransition(() => {
+      router.refresh();
+    });
+  };
+
+  // export const addToCart = async (item: any) => {
+  //   return await swell.cart.addItem(item);
+  // };
 
   return (
     <div className="">
@@ -51,7 +72,9 @@ function Product({ product }: any) {
 
           <div className="h-[0.5px] bg-stone-500/20 w-full my-4" />
           <div className="w-full">
-            <Button className="w-full ">Add to bag - {price}</Button>
+            <Button type="submit" onClick={handleSubmit} className="w-full ">
+              Add to bag - {price}
+            </Button>
           </div>
         </div>
       </div>
