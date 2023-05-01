@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import {
   Menubar,
   MenubarContent,
@@ -26,14 +26,19 @@ function Header({}: Props) {
 
   const router = useRouter();
   const path = usePathname();
-  const handleClick = () => {
-    router.push("/bag");
-  };
+  // const handleClick = () => {
+  //   router.push("/bag");
+  // };
+  // path === "/bag"
+
+  useEffect(() => {
+    path === "/bag" ? setOpen(false) : setOpen(true);
+  }, [path]);
 
   // useMenu
 
   const disable = path === "/bag" ? true : false;
-
+  const [open, setOpen] = useState(true);
   return (
     <nav className="flex item-center bg-stone-300 w-full justify-between sticky top-0 left-0 right-0 z-50">
       <div className=""></div>
@@ -42,7 +47,7 @@ function Header({}: Props) {
         <div className=" hidden md:inline-block">
           <MenubarMenu>
             <MenubarTrigger>help</MenubarTrigger>
-            <MenubarContent>
+            <MenubarContent forceMount>
               <MenubarItem inset>coming soon...</MenubarItem>
             </MenubarContent>
           </MenubarMenu>
@@ -60,35 +65,41 @@ function Header({}: Props) {
             Bag ({cartItems?.length === 0 ? 0 : cartItems?.length})
           </MenubarTrigger>
 
-          <MenubarContent>
-            {cartItems?.length === 0 ? (
-              <div className="min- min-h-[8rem] w-full flex items-center justify-center">
-                <P>Your bag is empty</P>
-              </div>
-            ) : (
-              <ScrollArea className="h-fit w-full ">
-                {cartItems?.map((items) => {
-                  const { product, quantity } = items;
+          {open && (
+            <MenubarContent forceMount>
+              {cartItems?.length === 0 ? (
+                <div className="min- min-h-[8rem] w-full flex items-center justify-center">
+                  <P>Your bag is empty</P>
+                </div>
+              ) : (
+                <ScrollArea className="h-fit w-full ">
+                  {cartItems?.map((items) => {
+                    const { product, quantity } = items;
 
-                  return (
-                    <Fragment key={items.id}>
-                      <MenubarItem onSelect={(e) => e.preventDefault()}>
-                        <CartItem
-                          product={product}
-                          quantity={quantity}
-                          items={items}
-                        />
-                      </MenubarItem>
-                      <MenubarSeparator />
-                    </Fragment>
-                  );
-                })}
-                <Link href="/bag" className={`${buttonVariants()} w-full`}>
-                  view your bag
-                </Link>
-              </ScrollArea>
-            )}
-          </MenubarContent>
+                    return (
+                      <Fragment key={items.id}>
+                        <MenubarItem onSelect={(e) => e.preventDefault()}>
+                          <CartItem
+                            product={product}
+                            quantity={quantity}
+                            items={items}
+                          />
+                        </MenubarItem>
+                        <MenubarSeparator />
+                      </Fragment>
+                    );
+                  })}
+                  <Link
+                    href="/bag"
+                    onClick={() => setOpen(false)}
+                    className={`${buttonVariants()} w-full`}
+                  >
+                    view your bag
+                  </Link>
+                </ScrollArea>
+              )}
+            </MenubarContent>
+          )}
         </MenubarMenu>
       </Menubar>
     </nav>
