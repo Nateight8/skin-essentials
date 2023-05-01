@@ -60,7 +60,11 @@ function Header({}: Props) {
           </MenubarTrigger>
 
           <MenubarContent>
-            {cartItems ? (
+            {cartItems?.length === 0 ? (
+              <div className="min- min-h-[8rem] w-full flex items-center justify-center">
+                <P>Your bag is empty</P>
+              </div>
+            ) : (
               <ScrollArea className="h-fit w-full ">
                 {cartItems?.map((items) => {
                   const { product, quantity } = items;
@@ -82,10 +86,6 @@ function Header({}: Props) {
                   view your bag
                 </Link>
               </ScrollArea>
-            ) : (
-              <div className="min- min-h-[8rem] w-full flex items-center justify-center">
-                <P>Your bag is empty</P>
-              </div>
             )}
           </MenubarContent>
         </MenubarMenu>
