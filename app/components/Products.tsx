@@ -67,7 +67,9 @@ function Products({ products }: Props) {
               </Link>
 
               <div className="py-3">
-                <H4 className="text-center font-normal">{name}</H4>
+                <H4 className="text-center font-normal max-w-prose truncate">
+                  {name}
+                </H4>
                 <Button
                   type="submit"
                   onClick={() => {
