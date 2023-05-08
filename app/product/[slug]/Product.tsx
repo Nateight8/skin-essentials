@@ -38,7 +38,7 @@ function Product({ product }: Props) {
     <div className="">
       <div className="grid md:grid-cols-2 ">
         <div className="flex items-center justify-center w-full   bg-stone-200/10">
-          <div className=" w-full h-[75vh] md:h-[50vh] sm:w-96 relative">
+          <div className=" w-full h-[75vh] md:h-[50vh] sm:w-96 relative ring-inset ring-slate-500 ring-offset-1">
             <Image
               src={url}
               alt=""

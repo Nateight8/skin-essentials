@@ -13,6 +13,8 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { useSWRConfig } from "swr";
 import { addToCart } from "@/lib/swell/cart";
 import { useRouter } from "next/navigation";
+import { getCart } from "@/lib/swell/cart";
+import useSWR from "swr";
 
 type Props = {
   products: any;
@@ -22,8 +24,27 @@ function Products({ products }: Props) {
   const { mutate } = useSWRConfig();
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
+  // fetching cartItems using SWR
+  const { data: cart, isLoading } = useSWR("cart", getCart);
+  const cartItems = cart?.items;
+  // console.log(cart);
 
   const addItem = async (itemId: string | undefined) => {
+    // const existingItem = cartItems?.find((item) => {
+    //   console.log(item.id);
+    //   // console.log(itemId);
+    // });
+    // console.log(existingItem);
+    // console.log(itemId);
+
+    // // item.id === itemId
+
+    // if (existingItem) {
+    //   console.log("This item is already in the cart.");
+    // } else {
+    //   console.log("Item added to the cart.");
+    // }
+
     await addToCart({
       product_id: itemId,
       quantity: 1,
@@ -40,15 +61,13 @@ function Products({ products }: Props) {
     <section className="my-10  w-full px-4 ">
       <div className="py-6">
         <h1 className=" text-5xl md:text-7xl pb-6 font-customFont">
-          SKIN ESSENTIALS.
+          HOME ESSENTIALS.
         </h1>
       </div>
       <div className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4  gap-2 sm:gap-[1.5em]">
         {products.map((product: Product) => {
           const { id, price, slug, images, name } = product;
           const url = (product?.images && product?.images[0]?.file?.url) ?? "";
-
-          // handling click
 
           return (
             <div key={id} className="w-full ">

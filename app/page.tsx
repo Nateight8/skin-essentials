@@ -11,6 +11,8 @@ export default async function Home() {
   return (
     <>
       <main>
+        {/* <section className="bg-slate-100 h-screen w-full"></section> */}
+
         <Products products={products} />
       </main>
     </>

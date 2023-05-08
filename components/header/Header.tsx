@@ -16,7 +16,6 @@ import { Button, buttonVariants } from "../ui/button";
 import { useRouter, usePathname } from "next/navigation";
 import { P } from "../ui/P";
 import Link from "next/link";
-import {} from "@radix-ui/react-menubar";
 import {
   Sheet,
   SheetContent,
@@ -25,6 +24,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import useNavbarScroll from "../hooks/useNavbar";
 
 type Props = {};
 
@@ -32,11 +32,12 @@ function Header({}: Props) {
   // navlinks here
   const navlinks = [
     { id: "1", url: "/", label: "home" },
-    { id: "2", url: "/bag", label: "bag" },
-    { id: "3", url: "/about", label: "about" },
+    { id: "1", url: "/shop", label: "shop" },
+    { id: "2", url: "/about", label: "about" },
+    { id: "3", url: "/help", label: "help" },
   ];
 
-  // fetching data using SWR
+  // fetching cartItems using SWR
   const { data: cart, isLoading } = useSWR("cart", getCart);
   const cartItems = cart?.items;
 
@@ -53,12 +54,11 @@ function Header({}: Props) {
 
   // useMenu
   const [openMenu, setopenMenu] = useState(false);
-  // const menuOpenHandler = () => {
-  //   setopenMenu(!openMenu);
-  // };
 
+  // const isVisible = useNavbarScroll();
+  // style={isVisible ? { display: "none" } : { display: "flex" }} border-stone-400/70 border-b
   return (
-    <nav className="flex item-center border-b border-stone-400/70 bg-stone-300 w-full justify-between sticky top-0 left-0 right-0 z-50">
+    <nav className="flex item-center shadow-stone-800/30 shadow-sm  transition-all duration-700  bg-stone-300 w-full justify-between sticky top-0 left-0 right-0 z-50">
       <Sheet open={openMenu} onOpenChange={setopenMenu}>
         <SheetTrigger className="flex md:hidden cursor-pointer select-none items-center font-inter text-slate-600 font-semibold hover:text-slate-700 uppercase  px-3 py-1.5 text-sm  outline-none   focus:text-accent-foreground  data-[state=open]:text-accent-foreground">
           menu
@@ -66,15 +66,15 @@ function Header({}: Props) {
 
         <SheetContent
           forceMount
-          className="transition-transform duration-700 ease-in-out"
+          className="transition-transform duration-700 ease-in-out pt-10 px-[14px]"
           position={"top"}
           size={"full"}
         >
-          <SheetHeader>
+          {/* <SheetHeader>
             <SheetTitle className="font-custom text-left mb-4">
               Elegance
             </SheetTitle>
-          </SheetHeader>
+          </SheetHeader> */}
           <ul className="space-y-2 w-72">
             {navlinks.map(({ id, url, label }) => (
               <li key={id} className="uppercase">

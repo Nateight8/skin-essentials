@@ -3,7 +3,6 @@ import Footer from "@/components/footer/Footer";
 import "./globals.css";
 import { Montserrat, Poiret_One } from "next/font/google";
 import Navbar from "@/components/navbar/Navbar";
-import { Provider } from "react-redux";
 import { store } from "@/lib/redux/store";
 import Header from "@/components/header/Header";
 
@@ -25,14 +24,11 @@ export default function RootLayout({
       <body
         className={`${customFont.variable} ${montese.variable} antialiased scroll-smooth`}
       >
-        <Provider store={store}>
-          <>
-            {/* <Navbar /> */}
-            <Header />
-            <main>{children}</main>
-            <Footer />
-          </>
-        </Provider>
+        <>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </>
       </body>
     </html>
   );
