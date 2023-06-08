@@ -4,7 +4,7 @@ export const getProducts = async ({
   page = 1,
   //   sort = "",
   filters = {},
-  limit = 4,
+  limit = 8,
 }) => {
   return await swell.products.list({
     page,

@@ -1,3 +1,4 @@
+import Hero from "./components/Hero";
 import Products from "./components/Products";
 import { getProducts } from "@/lib/swell/products";
 
@@ -11,7 +12,7 @@ export default async function Home() {
   return (
     <>
       <main>
-        {/* <section className="bg-slate-100 h-screen w-full"></section> */}
+        <Hero />
 
         <Products products={products} />
       </main>

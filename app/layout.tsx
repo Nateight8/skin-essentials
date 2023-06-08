@@ -2,9 +2,10 @@
 import Footer from "@/components/footer/Footer";
 import "./globals.css";
 import { Montserrat, Poiret_One } from "next/font/google";
-import Navbar from "@/components/navbar/Navbar";
+// import Navbar from "@/components/navbar/Navbar";
 import { store } from "@/lib/redux/store";
 import Header from "@/components/header/Header";
+import HeaderNav from "@/components/header/Navbar";
 
 const customFont = Poiret_One({
   weight: "400",
@@ -25,7 +26,7 @@ export default function RootLayout({
         className={`${customFont.variable} ${montese.variable} antialiased scroll-smooth`}
       >
         <>
-          <Header />
+          <HeaderNav />
           <main>{children}</main>
           <Footer />
         </>
