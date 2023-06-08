@@ -11,7 +11,7 @@ export default async function Home() {
 
   return (
     <>
-      <main>
+      <main className="mt-[10vh]">
         <Hero />
 
         <Products products={products} />

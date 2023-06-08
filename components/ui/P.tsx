@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import { VariantProps, cva } from "class-variance-authority";
 import { HTMLAttributes, forwardRef } from "react";
 
-const pVariants = cva("pb-4 font-inter text-slate-700", {
+const pVariants = cva("pb-4 font-inter text-[#32323D]", {
   variants: {
     size: {
       default: "text-sm",

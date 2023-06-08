@@ -119,12 +119,12 @@ export default function HeaderNav() {
     <>
       <Navbar
         blurred={false}
-        className="sticky bg-[#d6d3d1] shadow-none border-b border-[#32323d42] inset-0 z-10 h-max max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4"
+        className="fixed bg-[#d6d3d1] shadow-none border-b border-[#32323d42] inset-0 z-10 h-[10vh] max-w-full rounded-none py-2 px-4 lg:px-8 lg:py-4"
       >
         <div className="flex items-center justify-between text-blue-gray-900">
           <Link
             href="/"
-
+            className="hidden md:block"
             // className={`${buttonVariants()} w-full`}
           >
             Disconnect
@@ -170,6 +170,13 @@ export default function HeaderNav() {
               )}
             </IconButton>
           </div>
+          {/* <Link
+            href="/"
+            className="hidden md:block"
+            // className={`${buttonVariants()} w-full`}
+          >
+            Disconnect
+          </Link> */}
           <div className=" md:hidden">
             <Menubar>
               <MenubarMenu>
